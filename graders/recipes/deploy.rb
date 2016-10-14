@@ -7,11 +7,11 @@ end
 cron 'Update Grader Repo' do
   minute '15'
   user 'root'
-  mailto 'indagation@gmail.com'
-  command %W{
-    cd /home/ubuntu/graders-mit-6008x
-    git pull
-  }.join(' ')
+  command 'cd /home/ubuntu/graders-mit-6008x && git pull >> /home/ubuntu/git.log 2>&1'
+end
+
+execute 'Kill Python Graders' do
+  command 'sudo pkill -9 python'
 end
 
 execute 'Run Grader in Background' do
