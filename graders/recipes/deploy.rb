@@ -12,6 +12,7 @@ end
 
 execute 'Kill Python Graders' do
   command 'sudo pkill -9 python'
+  returns [0,1]
 end
 
 execute 'Run Grader in Background' do
