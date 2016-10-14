@@ -10,6 +10,12 @@ cron 'Update Grader Repo' do
   command 'cd /home/ubuntu/graders-mit-6008x && git pull >> /home/ubuntu/git.log 2>&1'
 end
 
+cron 'Periodically Clear Grader Output' do
+  hour '1'
+  user 'root'
+  command 'cat /dev/null > /home/ubuntu/grader.out'
+end
+
 execute 'Kill Python Graders' do
   command 'sudo pkill -9 python'
   returns [0,1]
